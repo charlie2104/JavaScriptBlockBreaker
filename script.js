@@ -17,6 +17,11 @@ const PADDLE_THICKNESS = 10;
 const PADDLE_DIST_FROM_EDGE = 60;
 var paddleX = 400;
 
+//brick variables
+const BRICK_W = 100;
+const BRICK_H = 50;
+const BRICK_COUNT = 4;
+
 window.onload = function(){
     canvas = document.getElementById('gameCanvas');
     canvasContext = canvas.getContext('2d');
@@ -81,6 +86,7 @@ function drawAll(){
     colorRect(0,0,canvas.width,canvas.height, 'black');  //draw background
     colorCircle(ballX,ballY, 10, 'white'); //draw ball
     colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
+    drawBricks();
     colorText(mouseX + ',' + mouseY, mouseX, mouseY, 'yellow'); //shows the mouses coordinates next to the mouse for debugging
 }
 
@@ -96,7 +102,11 @@ function colorCircle(centreX, centreY, radius, fillColor){   //a function that m
     canvasContext.fill();
 }
 
-function colorText(text, cornerX, cornerY, fillColor){
+function colorText(text, cornerX, cornerY, fillColor){  //a function to draw text
     canvasContext.fillStyle = fillColor;
     canvasContext.fillText(text, cornerX, cornerY);
+}
+
+function drawBricks(){  //a function to draw all the bricks
+    colorRect(0,0,BRICK_W,BRICK_H,'blue');
 }
