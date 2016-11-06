@@ -67,7 +67,10 @@ function moveAll(){
         ballY < paddleBottomEdgeY && //the ball is above the bottom of the paddle
         ballX > paddleLeftEdgeX && //the ball is to the right of the left side of the paddle
         ballX < paddleRightEdgeX) { //the ball is to the left of the right side of the paddle
-            ballSpeedY *= -1; //inverts the balls y direction
+        //in the if statement
+        ballSpeedY *= -1; //inverts the balls y direction
+        var centerOfPaddleX = paddleX + PADDLE_WIDTH/2;
+        var ballDistFromPaddleCenterX = ballX - centerOfPaddleX;
     }
 }
 
