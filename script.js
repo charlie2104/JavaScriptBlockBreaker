@@ -12,6 +12,7 @@ var ballSpeedY = 7;
 //paddle variables
 const PADDLE_WIDTH = 100;
 const PADDLE_THICKNESS = 10;
+const PADDLE_DIST_FROM_EDGE = 60;
 var paddleX = 400;
 
 window.onload = function(){
@@ -57,12 +58,23 @@ function moveAll(){
     if (ballX < 0) {  //left side
         ballSpeedX *= -1; //inverts the balls x direction
     }
+    //initialising variables for collisions
+    var paddleTopEdgeY = canvas.height - PADDLE_DIST_FROM_EDGE;
+    var paddleBottomEdgeY = paddleTopEdgeY + PADDLE_THICKNESS;
+    var paddleLeftEdgeX = paddleX;
+    var paddleRightEdgeX = paddleX + PADDLE_WIDTH;
+    if (ballY > paddleTopEdgeY && //the ball is below the top of the paddle
+        ballY < paddleBottomEdgeY && //the ball is above the bottom of the paddle
+        ballX > paddleLeftEdgeX && //the ball is to the right of the left side of the paddle
+        ballX < paddleRightEdgeX) { //the ball is to the left of the right side of the paddle
+            ballSpeedY *= -1; //inverts the balls y direction
+    }
 }
 
 function drawAll(){
     colorRect(0,0,canvas.width,canvas.height, 'black');  //draw background
     colorCircle(ballX,ballY, 10, 'white'); //draw ball
-    colorRect(paddleX, canvas.height - PADDLE_THICKNESS, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
+    colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
 }
 
 function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor ){ //a function that makes a rectangle
