@@ -21,6 +21,11 @@ window.onload = function(){
     canvas.addEventListener('mousemove', updateMousePos); //when the mouse moves call updateMousePos()
 }
 
+function ballReset(){  //resets the balls position when the player misses it
+    ballX = canvas.width/2;
+    ballY = canvas.height/2;
+}
+
 function updateMousePos(evt){  //makes the paddle move with the mouse
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
@@ -39,17 +44,17 @@ function moveAll(){
     ballX += ballSpeedX;   //makes the ball move in the x direction
     ballY += ballSpeedY;  //makes the ball move in the y direction
 
-    if (ballY > canvas.height){
-        ballSpeedY *= -1; //inverts the balls y direction
+    if (ballY > canvas.height){ //bottom
+        ballReset();
     }
-    if (ballY < 0) {
+    if (ballY < 0) { //top
         ballSpeedY *= -1; //inverts the balls y direction
     }
 
-    if (ballX > canvas.width){
+    if (ballX > canvas.width){ //right side
         ballSpeedX *= -1; //inverts the balls x direction
     }
-    if (ballX < 0) {
+    if (ballX < 0) {  //left side
         ballSpeedX *= -1; //inverts the balls x direction
     }
 }
