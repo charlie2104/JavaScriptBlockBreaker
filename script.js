@@ -71,6 +71,7 @@ function moveAll(){
         ballSpeedY *= -1; //inverts the balls y direction
         var centerOfPaddleX = paddleX + PADDLE_WIDTH/2;
         var ballDistFromPaddleCenterX = ballX - centerOfPaddleX;
+        ballSpeedX = ballDistFromPaddleCenterX * 0.35; //the further the ball is from the center the greater its x speed will be
     }
 }
 
