@@ -2,6 +2,8 @@
 var canvas;
 var canvasContext;
 var framesPerSecond = 30;
+var mouseX;
+var mouseY;
 
 //variables needed for the ball
 var ballX = 75;
@@ -30,8 +32,8 @@ function ballReset(){  //resets the balls position when the player misses it
 function updateMousePos(evt){  //makes the paddle move with the mouse
     var rect = canvas.getBoundingClientRect();
     var root = document.documentElement;
-    var mouseX = evt.clientX - rect.left - root.scrollLeft;  //mouses x position
-    var mouseY = evt.clientY - rect.top - root.scrollTop;  //mouses y position
+    mouseX = evt.clientX - rect.left - root.scrollLeft;  //mouses x position
+    mouseY = evt.clientY - rect.top - root.scrollTop;  //mouses y position
     paddleX = mouseX - PADDLE_WIDTH/2;  //sets the paddles pos to the mouses pos minus the paddleWidth/2 for the center of the paddle
 }
 
@@ -79,6 +81,7 @@ function drawAll(){
     colorRect(0,0,canvas.width,canvas.height, 'black');  //draw background
     colorCircle(ballX,ballY, 10, 'white'); //draw ball
     colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
+    colorText(mouseX + ',' + mouseY, mouseX, mouseY, 'yellow'); //shows the mouses coordinates next to the mouse for debugging
 }
 
 function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor ){ //a function that makes a rectangle
@@ -91,4 +94,9 @@ function colorCircle(centreX, centreY, radius, fillColor){   //a function that m
     canvasContext.beginPath();
     canvasContext.arc(centreX,centreY, radius, 0, Math.PI*2, true);
     canvasContext.fill();
+}
+
+function colorText(text, cornerX, cornerY, fillColor){
+    canvasContext.fillStyle = fillColor;
+    canvasContext.fillText(text, cornerX, cornerY);
 }
