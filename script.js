@@ -20,7 +20,7 @@ var paddleX = 400;
 //brick variables
 const BRICK_W = 100;
 const BRICK_H = 50;
-const BRICK_COUNT = 4;
+const BRICK_COUNT = 8;
 var brickGrid = [true, true, true, true];
 
 
@@ -29,6 +29,7 @@ window.onload = function(){
     canvasContext = canvas.getContext('2d');
     setInterval(updateAll, 1000/framesPerSecond); //calls the update all function
     canvas.addEventListener('mousemove', updateMousePos); //when the mouse moves call updateMousePos()
+    brickReset(); //makes the array of bricks
 }
 
 function ballReset(){  //resets the balls position when the player misses it
@@ -108,17 +109,20 @@ function colorText(text, cornerX, cornerY, fillColor){  //a function to draw tex
     canvasContext.fillText(text, cornerX, cornerY);
 }
 
+function brickReset(){  //a function that creates an array for the bricks
+    for (var i = 0; i < BRICK_COUNT; i++) {
+        if (Math.random() > 0.5){  //randomly places the bricks
+            brickGrid[i] = true;
+        } else{
+            brickGrid[i] = false;
+        }
+    }
+}
+
 function drawBricks(){  //a function to draw all the bricks
-    if(brickGrid[0]){
-        colorRect(BRICK_W*0,0,BRICK_W-2,BRICK_H,'blue');
-    }
-    if (brickGrid[1]) {
-        colorRect(BRICK_W*1,0,BRICK_W-2,BRICK_H,'blue');
-    }
-    if (brickGrid[2]){
-        colorRect(BRICK_W*2,0,BRICK_W-2,BRICK_H,'blue');
-    }
-    if (brickGrid[3]){
-        colorRect(BRICK_W*3,0,BRICK_W-2,BRICK_H,'blue');
+    for (var i = 0; i < BRICK_COUNT; i++) {
+        if(brickGrid[i]){
+            colorRect(BRICK_W*i,0,BRICK_W-2,BRICK_H,'blue');
+        }
     }
 }
