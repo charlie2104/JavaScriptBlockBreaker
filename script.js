@@ -21,6 +21,11 @@ var paddleX = 400;
 const BRICK_W = 100;
 const BRICK_H = 50;
 const BRICK_COUNT = 4;
+var brick1 = true;
+var brick2 = true;
+var brick3 = true;
+var brick4 = true;
+
 
 window.onload = function(){
     canvas = document.getElementById('gameCanvas');
@@ -58,7 +63,6 @@ function moveAll(){
     if (ballY < 0) { //top
         ballSpeedY *= -1; //inverts the balls y direction
     }
-
     if (ballX > canvas.width){ //right side
         ballSpeedX *= -1; //inverts the balls x direction
     }
@@ -108,8 +112,16 @@ function colorText(text, cornerX, cornerY, fillColor){  //a function to draw tex
 }
 
 function drawBricks(){  //a function to draw all the bricks
-    colorRect(0,0,BRICK_W-2,BRICK_H,'blue');
-    colorRect(BRICK_W,0,BRICK_W-2,BRICK_H,'blue');
-    colorRect(BRICK_W*2,0,BRICK_W-2,BRICK_H,'blue');
-    colorRect(BRICK_W*3,0,BRICK_W-2,BRICK_H,'blue');
+    if(brick1){
+        colorRect(0,0,BRICK_W-2,BRICK_H,'blue');
+    }
+    if (brick2) {
+        colorRect(BRICK_W,0,BRICK_W-2,BRICK_H,'blue');
+    }
+    if (brick3){
+        colorRect(BRICK_W*2,0,BRICK_W-2,BRICK_H,'blue');
+    }
+    if (brick4){
+        colorRect(BRICK_W*3,0,BRICK_W-2,BRICK_H,'blue');
+    }
 }
