@@ -21,10 +21,7 @@ var paddleX = 400;
 const BRICK_W = 100;
 const BRICK_H = 50;
 const BRICK_COUNT = 4;
-var brick1 = true;
-var brick2 = true;
-var brick3 = true;
-var brick4 = true;
+var brickGrid = [true, true, true, true];
 
 
 window.onload = function(){
@@ -112,16 +109,16 @@ function colorText(text, cornerX, cornerY, fillColor){  //a function to draw tex
 }
 
 function drawBricks(){  //a function to draw all the bricks
-    if(brick1){
-        colorRect(0,0,BRICK_W-2,BRICK_H,'blue');
+    if(brickGrid[0]){
+        colorRect(BRICK_W*0,0,BRICK_W-2,BRICK_H,'blue');
     }
-    if (brick2) {
-        colorRect(BRICK_W,0,BRICK_W-2,BRICK_H,'blue');
+    if (brickGrid[1]) {
+        colorRect(BRICK_W*1,0,BRICK_W-2,BRICK_H,'blue');
     }
-    if (brick3){
+    if (brickGrid[2]){
         colorRect(BRICK_W*2,0,BRICK_W-2,BRICK_H,'blue');
     }
-    if (brick4){
+    if (brickGrid[3]){
         colorRect(BRICK_W*3,0,BRICK_W-2,BRICK_H,'blue');
     }
 }
