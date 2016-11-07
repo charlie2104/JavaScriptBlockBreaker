@@ -108,5 +108,8 @@ function colorText(text, cornerX, cornerY, fillColor){  //a function to draw tex
 }
 
 function drawBricks(){  //a function to draw all the bricks
-    colorRect(0,0,BRICK_W,BRICK_H,'blue');
+    colorRect(0,0,BRICK_W-2,BRICK_H,'blue');
+    colorRect(BRICK_W,0,BRICK_W-2,BRICK_H,'blue');
+    colorRect(BRICK_W*2,0,BRICK_W-2,BRICK_H,'blue');
+    colorRect(BRICK_W*3,0,BRICK_W-2,BRICK_H,'blue');
 }
