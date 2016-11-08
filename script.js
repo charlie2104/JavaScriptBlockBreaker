@@ -22,6 +22,7 @@ const BRICK_W = 100;
 const BRICK_H = 50;
 const BRICK_COUNT = 8;
 const BRICK_GAP = 2;
+const BRICK_ROWS = 5;
 var brickGrid = [true, true, true, true];
 
 
@@ -114,14 +115,17 @@ function colorText(text, cornerX, cornerY, fillColor){  //a function to draw tex
 
 function brickReset(){  //a function that creates an array for the bricks
     for (var i = 0; i < BRICK_COUNT; i++) {
-        Math.random() > 0.5 ? brickGrid[i] = true : brickGrid[i] = false; //using a ternary operator to randomise brick placement
+        //Math.random() > 0.5 ? brickGrid[i] = true : brickGrid[i] = false; //using a ternary operator to randomise brick placement
+        brickGrid[i] = true;
     }
 }
 
 function drawBricks(){  //a function to draw all the bricks
-    for (var i = 0; i < BRICK_COUNT; i++) {
-        if(brickGrid[i]){
-            colorRect(BRICK_W*i,0,BRICK_W-BRICK_GAP,BRICK_H,'blue');
+    for (var eachRow = 0; eachRow < BRICK_ROWS; eachRow++){
+        for (var i = 0; i < BRICK_COUNT; i++) {
+            if(brickGrid[i]){
+                colorRect(BRICK_W*i,BRICK_H*eachRow,BRICK_W-BRICK_GAP,BRICK_H - BRICK_GAP,'blue');
+            }
         }
     }
 }
