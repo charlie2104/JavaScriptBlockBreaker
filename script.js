@@ -111,11 +111,7 @@ function colorText(text, cornerX, cornerY, fillColor){  //a function to draw tex
 
 function brickReset(){  //a function that creates an array for the bricks
     for (var i = 0; i < BRICK_COUNT; i++) {
-        if (Math.random() > 0.5){  //randomly places the bricks
-            brickGrid[i] = true;
-        } else{
-            brickGrid[i] = false;
-        }
+        Math.random() > 0.5 ? brickGrid[i] = true : brickGrid[i] = false; //using a ternary operator to randomise brick placement
     }
 }
 
