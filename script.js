@@ -18,11 +18,11 @@ const PADDLE_DIST_FROM_EDGE = 60;
 var paddleX = 400;
 
 //brick variables
-const BRICK_W = 100;
-const BRICK_H = 50;
-const BRICK_COLS = 8;
+const BRICK_W = 80;
+const BRICK_H = 20;
+const BRICK_COLS = 10;
 const BRICK_GAP = 2;
-const BRICK_ROWS = 5;
+const BRICK_ROWS = 14;
 var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);
 
 
@@ -93,7 +93,8 @@ function drawAll(){
     drawBricks();
     var mouseBrickCol = Math.floor(mouseX / BRICK_W);
     var mouseBrickRow = Math.floor(mouseY / BRICK_H);
-    colorText(mouseBrickCol + ',' + mouseBrickRow, mouseX, mouseY, 'yellow'); //shows the mouses coordinates next to the mouse for debugging
+    var brickIndexUnderMouse = rowColToArrayIndex(mouseBrickRow, mouseBrickCol);
+    colorText(mouseBrickCol + ',' + mouseBrickRow + ':' + brickIndexUnderMouse, mouseX, mouseY, 'yellow'); //shows the mouses coordinates next to the mouse for debugging
 }
 
 function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor ){ //a function that makes a rectangle
@@ -116,14 +117,17 @@ function colorText(text, cornerX, cornerY, fillColor){  //a function to draw tex
 function brickReset(){  //a function that creates an array for the bricks
     for (var i = 0; i < BRICK_COLS * BRICK_ROWS; i++) {
         Math.random() > 0.5 ? brickGrid[i] = true : brickGrid[i] = false; //using a ternary operator to randomise brick placement
-        //brickGrid[i] = true;
     }
+}
+
+function rowColToArrayIndex(row,col){
+    return col + BRICK_COLS * row;
 }
 
 function drawBricks(){  //a function to draw all the bricks
     for (var eachRow = 0; eachRow < BRICK_ROWS; eachRow++){  //loops through the rows
         for (var eachCol = 0; eachCol < BRICK_COLS; eachCol++) {  //loops throught the columns
-            var arrayIndex = BRICK_COLS * eachRow + eachCol;
+            var arrayIndex = rowColToArrayIndex(eachRow,eachCol);
             if(brickGrid[arrayIndex]){
                 colorRect(BRICK_W*eachCol,BRICK_H*eachRow,BRICK_W-BRICK_GAP,BRICK_H - BRICK_GAP,'blue');
             }
