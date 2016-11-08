@@ -21,6 +21,7 @@ var paddleX = 400;
 const BRICK_W = 100;
 const BRICK_H = 50;
 const BRICK_COUNT = 8;
+const BRICK_GAP = 2;
 var brickGrid = [true, true, true, true];
 
 
@@ -89,7 +90,9 @@ function drawAll(){
     colorCircle(ballX,ballY, 10, 'white'); //draw ball
     colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE, PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
     drawBricks();
-    colorText(mouseX + ',' + mouseY, mouseX, mouseY, 'yellow'); //shows the mouses coordinates next to the mouse for debugging
+    var mouseBrickCol = Math.floor(mouseX / BRICK_W);
+    var mouseBrickRow = Math.floor(mouseY / BRICK_H);
+    colorText(mouseBrickCol + ',' + mouseBrickRow, mouseX, mouseY, 'yellow'); //shows the mouses coordinates next to the mouse for debugging
 }
 
 function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor ){ //a function that makes a rectangle
@@ -118,7 +121,7 @@ function brickReset(){  //a function that creates an array for the bricks
 function drawBricks(){  //a function to draw all the bricks
     for (var i = 0; i < BRICK_COUNT; i++) {
         if(brickGrid[i]){
-            colorRect(BRICK_W*i,0,BRICK_W-2,BRICK_H,'blue');
+            colorRect(BRICK_W*i,0,BRICK_W-BRICK_GAP,BRICK_H,'blue');
         }
     }
 }
